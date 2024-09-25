@@ -5,7 +5,9 @@ from django.views.decorators.csrf import csrf_exempt
 
 lista_de_produtos = ['salame', 'pao', 'guarana antartica']
 
-
+#Serve como um protetor no qual nao vai permitir interceptacoes no meio da requisicao do
+#usuario
+@csrf_exempt
 def buscar_todos_os_produtos(request):
     if request.method == 'GET':
         return JsonResponse( {'produtos':lista_de_produtos} )
@@ -28,3 +30,6 @@ def cadastrar_produto(request):
             return JsonResponse({'erro': 'JSON inválido'}, status=400)
     else:
         return JsonResponse({'erro': 'Método não permitido'}, status=405)
+    
+
+    #Exemplo Delete
