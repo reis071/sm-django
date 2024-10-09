@@ -54,3 +54,9 @@ def atualizar_produto(request, produto_id):
     # Caso o produto com o ID fornecido não exista, retorna uma resposta de erro 404
     except Produto.DoesNotExist:
         return JsonResponse({"error": "Produto não encontrado"}, status=404)
+
+
+def produtos_estaticos(request):
+    tupla_de_produtos_estaticos = ('arroz','feijão','macarrão')
+    
+    return render(request,'app/index.html', { 'tupla_de_produtos':tupla_de_produtos_estaticos })
