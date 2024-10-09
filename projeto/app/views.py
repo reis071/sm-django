@@ -18,10 +18,10 @@ def buscar_todos_os_produtos(request):
 def cadastrar_produto(request):
    dados = json.loads(request.body)
    produto = Produto.objects.create( 
-                                    nome=dados.get('nome_produto'),
-                                    marca = dados.get('marca_produto'),
-                                    preco = dados.get('preco_produto'),
-                                    estoque = dados.get('estoque_produto')
+                                    nome=dados.get('nome'),
+                                    marca = dados.get('marca'),
+                                    preco = dados.get('preco'),
+                                    estoque = dados.get('estoque')
                                     )
    return JsonResponse({"id":produto.id, 
                         "mensagem":"Produto criado com sucesso!!!"}
