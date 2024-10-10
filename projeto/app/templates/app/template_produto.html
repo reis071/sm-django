@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Bem vindo ao E-commerce Do Gui!</h1>
+
+    <p>veja os nossos produtos logo abaixo!</p>
+
+    <table border="1px">
+            <tr>
+                <th>id</th>
+                <th>Nome</th>
+                <th>marca</th>
+                <th>preço</th>
+                <th>estoque</th>
+            </tr>
+
+            {%for produto in lista_de_produtos%}
+                <tr>
+                    <td>{{ produto.id }}</td>
+                    <td>{{ produto.nome }}</td>
+                    <td>{{ produto.marca }}</td>
+                    <td>{{ produto.preco }}</td>
+                    <td>{{ produto.estoque }}</td>
+                </tr>
+                {% endfor %}
+    </table>
+
+</body>
+</html>

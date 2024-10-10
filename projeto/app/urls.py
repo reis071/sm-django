@@ -5,5 +5,6 @@ urlpatterns = [
     path('listar_produtos',views.buscar_todos_os_produtos),
     path('cadastrar_produto',views.cadastrar_produto),
     path('atualizar/<int:produto_id>',views.atualizar_produto),
-    path('tupla_de_produtos_estaticos',views.produtos_estaticos)
+    # path('produto_estatico',views.produtos_estaticos),
+    # path('lista_de_roupa_rota',views.listar_roupas),
 ]

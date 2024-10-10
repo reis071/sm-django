@@ -11,8 +11,10 @@ from .models import Produto
 @require_http_methods(["GET"])
 def buscar_todos_os_produtos(request):
     produtos = Produto.objects.all().values() #pegando todos os objetos Produto
-    return JsonResponse( list(produtos), safe=False ) #retornar uma lista de Produtos
-    
+    return render(request,'app/template_produto.html',{'lista_de_produtos':produtos})
+
+
+
 @csrf_exempt
 @require_http_methods(["POST"])
 def cadastrar_produto(request):
@@ -56,7 +58,12 @@ def atualizar_produto(request, produto_id):
         return JsonResponse({"error": "Produto não encontrado"}, status=404)
 
 
-def produtos_estaticos(request):
-    tupla_de_produtos_estaticos = ('arroz','feijão','macarrão')
+# def produtos_estaticos(request):
+#     tupla_de_produtos_estaticos = ('arroz','feijão','macarrão')
     
-    return render(request,'app/index.html', { 'tupla_de_produtos':tupla_de_produtos_estaticos })
+#     return render(request,'app/index.html', { 'tupla_de_produtos':tupla_de_produtos_estaticos })
+
+# def listar_roupas(request):
+#     lista_de_roupa = ['camisa','casaco','vestido','croped']
+    
+#     return render(request, 'app/roupa.html',{'lista_de_roupa':lista_de_roupa})
