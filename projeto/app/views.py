@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render,HttpResponseRedirect
 from django.http import JsonResponse
 import json
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 from .models import Produto
+from .forms import ProdutoForm
 
 #Serve como um protetor no qual nao vai permitir interceptacoes no meio da requisicao do
 #usuario
@@ -29,6 +30,27 @@ def cadastrar_produto(request):
                         "mensagem":"Produto criado com sucesso!!!"}
                        )
    
+   
+   
+   
+@csrf_exempt
+def cadastrar_produto_formulario(request):
+    if request.method == "POST":
+       form = ProdutoForm(request.POST)
+   
+       if form.is_valid():
+        produto = form.save()
+        return HttpResponseRedirect('/produtos/listar_produtos')
+        
+       else:
+        # O formulário não é válido, então ele será renderizado novamente com os erros
+        return render(request, 'cadastrar_produto_por_formulario.html', {'form': form})
+    
+    return render(request,'app/cadastrar_produto_por_formulario.html',{'forms':form})
+  
+  
+  
+  
 # Exclui a verificação de token CSRF para esta view (cuidado ao usar em produção)
 @csrf_exempt
 # Restringe a função para aceitar apenas requisições do tipo PUT
